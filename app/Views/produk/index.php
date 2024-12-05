@@ -665,13 +665,17 @@
     <div class="header">
     <button class="nav-toggler">☰</button>
     <div class="nav">
-        <a href="/" class="nav-item">Beranda</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item">Tentang</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/article') : base_url('/id/artikel') ?>" class="nav-item">Artikel</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/produtc') : base_url('/id/produk') ?>" class="nav-item">Produk</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/activities') : base_url('/id/aktivitas') ?>" class="nav-item">Aktivitas</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/contact') : base_url('/id/kontak') ?>" class="nav-item">Kontak</a>
-      </div>
+    <!-- Link Beranda yang menyesuaikan dengan bahasa yang dipilih -->
+    <a href="<?= ($lang == 'en') ? base_url('/en') : base_url('/id') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
+    
+    <!-- Link lainnya tetap sama seperti sebelumnya -->
+    <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item"><?= ($lang == 'en') ? 'About' : 'Tentang' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/article') : base_url('/id/artikel') ?>" class="nav-item"><?= ($lang == 'en') ? 'Article' : 'Artikel' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/product') : base_url('/id/produk') ?>" class="nav-item"><?= ($lang == 'en') ? 'Product' : 'Produk' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/activity') : base_url('/id/aktivitas') ?>" class="nav-item"><?= ($lang == 'en') ? 'Activity' : 'Aktivitas' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/contact') : base_url('/id/kontak') ?>" class="nav-item"><?= ($lang == 'en') ? 'Contact' : 'Kontak' ?></a>
+</div>
+
       <img class="logo" src="/upload/logo.png" alt="Logo">
     </div>
 
@@ -679,12 +683,12 @@
     <div class="overlay">
       <img class="overlay-img" src="/upload/fotocar.jpg" alt="Gambar Overlay" />
       <div class="overlay-dark"></div>
-      <div class="breadcrumb">Beranda / Produk</div>
-      <div class="article-label">Produk Kami</div>
+      <div class="breadcrumb"><?=lang('Blog.produk1');?></div>
+      <div class="article-label"><?=lang('Blog.produkkami');?></div>
     </div>
 
     <!-- Judul Artikel -->
-    <div class="article-title">Produk Kami</div>
+    <div class="article-title"><?=lang('Blog.produkkami');?></div>
 
     <!-- Kotak Artikel dengan 2 Konten -->
     <!-- Wrapper utama -->
@@ -704,11 +708,17 @@
               <div class="article-text">
                 <h3><?= $produk->title_produk ?></h3>
                 <p class="custom-color">
-                  <?php
-                  $deskripsi_pendek = substr($produk->deskripsi_produk, 0, 200);
-                  echo strlen($produk->deskripsi_produk) > 200 ? $deskripsi_pendek . '...' : $deskripsi_pendek;
-                  ?>
-                </p>
+  <?php
+  if ($lang == 'id') {
+      $deskripsi_pendek = substr($produk->deskripsi_produk, 0, 200);
+      echo strlen($produk->deskripsi_produk) > 200 ? $deskripsi_pendek . '...' : $deskripsi_pendek;
+  } else {
+      $deskripsi_pendek = substr($produk->deskripsi_produk_en, 0, 200);
+      echo strlen($produk->deskripsi_produk_en) > 200 ? $deskripsi_pendek . '...' : $deskripsi_pendek;
+  }
+  ?>
+</p>
+
 
                 <a href="<?= site_url('produk/' . $produk->slug) ?>" class="read-more-btn">Baca Selengkapnya</a>
                 </div>

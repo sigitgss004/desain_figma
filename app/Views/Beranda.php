@@ -340,7 +340,7 @@
 
     @media (max-width: 1200px) {
       .centered-text {
-        font-size: 40px;
+        font-size: 60px;
         margin-top: 200px;
         margin-bottom: 80px;
       }
@@ -348,7 +348,7 @@
 
     @media (max-width: 992px) {
       .centered-text {
-        font-size: 35px;
+        font-size: 45px;
         margin-top: 150px;
         margin-bottom: 60px;
       }
@@ -1953,14 +1953,18 @@
     <!-- Header -->
     <div class="header">
       <button class="nav-toggler">☰</button>
-      <div class="nav">
-        <a href="/" class="nav-item">Beranda</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item">Tentang</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/article') : base_url('/id/artikel') ?>" class="nav-item">Artikel</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/produtc') : base_url('/id/produk') ?>" class="nav-item">Produk</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/activities') : base_url('/id/aktivitas') ?>" class="nav-item">Aktivitas</a>
-        <a href="<?= ($lang == 'en') ? base_url('/en/contact') : base_url('/id/kontak') ?>" class="nav-item">Kontak</a>
-      </div>
+<div class="nav">
+    <!-- Link Beranda yang menyesuaikan dengan bahasa yang dipilih -->
+    <a href="<?= ($lang == 'en') ? base_url('/en') : base_url('/id') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
+    
+    <!-- Link lainnya tetap sama seperti sebelumnya -->
+    <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item"><?= ($lang == 'en') ? 'About' : 'Tentang' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/article') : base_url('/id/artikel') ?>" class="nav-item"><?= ($lang == 'en') ? 'Article' : 'Artikel' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/product') : base_url('/id/produk') ?>" class="nav-item"><?= ($lang == 'en') ? 'Product' : 'Produk' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/activity') : base_url('/id/aktivitas') ?>" class="nav-item"><?= ($lang == 'en') ? 'Activity' : 'Aktivitas' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/contact') : base_url('/id/kontak') ?>" class="nav-item"><?= ($lang == 'en') ? 'Contact' : 'Kontak' ?></a>
+</div>
+
       <img class="logo" src="/upload/<?= $beranda->img_logo ?>" alt="LuxeWash Auto Detail Logo">
     </div>
 
@@ -1975,10 +1979,14 @@
 
     <!-- Teks "LuxeWash Auto Detail" -->
     <div class="centered-text">
-      <?= $beranda->title_2 ?>
+    <?php if ($lang == 'id'): ?>
+    <?= $beranda->title_2 ?>
+<?php else: ?>
+    <?= $beranda->title_2_en ?>
+<?php endif; ?>
     </div>
     <div class="about-section">
-      <h3 class="sub-heading">TENTANG KAMI</h3>
+      <h3 class="sub-heading"><?=lang('Blog.beranda2');?></h3>
       <h1 class="main-heading"><?= $tentang->title_tentang ?></h1>
     </div>
 
@@ -1988,7 +1996,14 @@
         <!-- Gambar tentang -->
         <img src="/upload/<?= htmlspecialchars($tentang->img_tentang, ENT_QUOTES, 'UTF-8'); ?>" alt="Gambar tentang LuxeWash" class="about-image2" />
         <!-- Deskripsi tentang -->
-        <p class="about-description2"><?= htmlspecialchars($tentang->deskripsi_tentang, ENT_QUOTES, 'UTF-8'); ?></p>
+        <p class="about-description2"><?php
+if ($lang === 'id') {
+    echo htmlspecialchars($tentang->deskripsi_tentang, ENT_QUOTES, 'UTF-8');
+} else {
+    echo htmlspecialchars($tentang->deskripsi_tentang_en, ENT_QUOTES, 'UTF-8');
+}
+?>
+</p>
         <!-- Tombol Baca Selengkapnya -->
         <a href="tentang" class="read-more-btn2">Baca Selengkapnya</a>
       </div>
@@ -2021,8 +2036,16 @@
       </div>
 
       <div class="description2">
-        <h2><?= $aktivitas->title_aktivitas ?></h2>
-        <p><?= $aktivitas->deskripsi_aktivitas ?></p>
+      <?php if ($lang == 'id'): ?>
+    <h2><?= $aktivitas->title_aktivitas ?></h2>
+<?php else: ?>
+    <h2><?= $aktivitas->title_aktivitas_en ?></h2>
+<?php endif; ?>
+<?php if ($lang == 'id'): ?>
+    <p><?= $aktivitas->deskripsi_aktivitas ?></p>
+<?php else: ?>
+    <p><?= $aktivitas->deskripsi_aktivitas_en ?></p>
+<?php endif; ?>
         <a href="aktivitas" class="read-more-btn">Baca Selengkapnya</a>
       </div>
     </div>
@@ -2031,8 +2054,18 @@
 
     <div class="box">
       <div class="description2">
-        <h2><?= $produk->title_produk ?></h2>
-        <p><?= $produk->deskripsi_produk ?></p>
+      <h2>
+    <?php if ($lang == 'id'): ?>
+        <?= $produk->title_produk ?>
+    <?php else: ?>
+        <?= $produk->title_produk_en ?>
+    <?php endif; ?>
+</h2>
+<?php if ($lang === 'id'): ?>
+    <p><?= $produk->deskripsi_produk ?></p>
+<?php else: ?>
+    <p><?= $produk->deskripsi_produk_en ?></p>
+<?php endif; ?>
         <a href="produk" class="read-more-btn">Baca Selengkapnya</a>
       </div>
 
