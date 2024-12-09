@@ -12,10 +12,10 @@ class AktivitasController extends BaseController
     public function index()
     {
                         //  // Inisialisasi model
-                        //  $aktivitasModel = new AktivitasModel();
+                        $aktivitasModel = new AktivitasModel();
         
                         //  // Ambil semua data, data akan dikembalikan sebagai object
-                        //  $data['aktivitas'] = $aktivitasModel->first();
+                         $data['aktivitas'] = $aktivitasModel->first();
 
                         $aktivitasDataModel = new DataAktivitasModel();
 
@@ -33,19 +33,37 @@ class AktivitasController extends BaseController
 
     public function detail($slug)
     {
-        // Menampilkan detail aktivitas berdasarkan slug
-        $aktivitasModel = new DataAktivitasModel();
-        $aktivitas = $aktivitasModel->where('slug', $slug)->first(); // Mengambil produk berdasarkan slug
+       
+
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $dataaktivitas = new DataAktivitasModel();
+        // Mencari produk berdasarkan slug
+  
+        $aktivitas = $dataaktivitas->where('slug', $slug)->orWhere('slug_en', $slug)->first();
+
+        // Cek apakah slug sesuai dengan bahasa yang sedang aktif
+        if (($lang === 'id' && $slug !== $aktivitas->slug) || ($lang === 'en' && $slug !== $aktivitas->slug_en)) {
+            // Redirect ke URL slug yang benar sesuai bahasa
+            $correctSlug = $lang === 'id' ? $aktivitas->slug : $aktivitas->slug_en;
+            $correctulr = $lang === 'id' ? 'aktivitas' : 'activity';
+
+            return redirect()->to("$lang/$correctulr/$correctSlug");
+        }
+       
+        
+
+        
 
         if (!$aktivitas) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(); // Jika produk tidak ditemukan
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Aktivitas dengan slug '{$slug}' tidak ditemukan.");
         }
 
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
         $data['aktivitas'] = $aktivitas;
-        return view('aktivitas/detail', ['aktivitas' => $aktivitas]);
+        return view('aktivitas/detail', $data); // Menampilkan detail produk
     }
-    
 }
