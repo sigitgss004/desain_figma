@@ -760,6 +760,7 @@
     <div class="nav">
     <!-- Link Beranda yang menyesuaikan dengan bahasa yang dipilih -->
     <a href="<?= ($lang == 'en') ? base_url('/en/') : base_url('/id/') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en') : base_url('/id') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
     
     <!-- Link lainnya tetap sama seperti sebelumnya -->
     <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item"><?= ($lang == 'en') ? 'About' : 'Tentang' ?></a>

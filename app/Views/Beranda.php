@@ -2114,6 +2114,7 @@
     <!-- Link Beranda yang menyesuaikan dengan bahasa yang dipilih -->
     <a href="<?= ($lang == 'en') ? base_url('/en/') : base_url('/id/') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
         
+    <a href="<?= ($lang == 'en') ? base_url('/en') : base_url('/id') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
     <!-- Link lainnya tetap sama seperti sebelumnya -->
     <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item"><?= ($lang == 'en') ? 'About' : 'Tentang' ?></a>
     <a href="<?= ($lang == 'en') ? base_url('/en/article') : base_url('/id/artikel') ?>" class="nav-item"><?= ($lang == 'en') ? 'Article' : 'Artikel' ?></a>
@@ -2123,6 +2124,7 @@
 </div>
 
 <img class="logo" src="<?= base_url('upload/' . $beranda->img_logo); ?>" alt="Logo">
+      <img class="logo" src="/upload/<?= $beranda->img_logo ?>" alt="LuxeWash Auto Detail Logo">
     </div>
 
     <div class="overlay">
@@ -2204,6 +2206,8 @@ if ($lang === 'id') {
 <?php endif; ?>
 <a href="<?= ($lang == 'en') ? base_url('/en/activity') : base_url('/id/aktivitas') ?>" class="read-more-btn"><?= lang('Blog.bacaselengkapnya1');?></a>      </div>
 </div>
+        <a href="aktivitas" class="read-more-btn">Baca Selengkapnya</a>
+      </div>
     </div>
 
 
@@ -2222,7 +2226,9 @@ if ($lang === 'id') {
 <?php else: ?>
     <p><?= $produk->deskripsi_produk_en ?></p>
 <?php endif; ?>
+<<<<<<< HEAD
 <a href="<?= ($lang == 'en') ? base_url('/en/product') : base_url('/id/produk') ?>" class="read-more-btn"><?= lang('Blog.bacaselengkapnya1');?> </a>
+        <a href="produk" class="read-more-btn">Baca Selengkapnya</a>
       </div>
 
       <div class="photo-grid">

@@ -781,6 +781,7 @@
 
   </style>
 </head>
+
 <body>
 
 <?php
@@ -887,6 +888,19 @@
 
       <img class="logo" src="<?= base_url('upload/' . $aktivitas->logo); ?>" alt="Logo">
     </div>
+    <!-- Link Beranda yang menyesuaikan dengan bahasa yang dipilih -->
+    <a href="<?= ($lang == 'en') ? base_url('/en') : base_url('/id') ?>" class="nav-item"><?= ($lang == 'en') ? 'Home' : 'Beranda' ?></a>
+    
+    <!-- Link lainnya tetap sama seperti sebelumnya -->
+    <a href="<?= ($lang == 'en') ? base_url('/en/about') : base_url('/id/tentang') ?>" class="nav-item"><?= ($lang == 'en') ? 'About' : 'Tentang' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/article') : base_url('/id/artikel') ?>" class="nav-item"><?= ($lang == 'en') ? 'Article' : 'Artikel' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/product') : base_url('/id/produk') ?>" class="nav-item"><?= ($lang == 'en') ? 'Product' : 'Produk' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/activity') : base_url('/id/aktivitas') ?>" class="nav-item"><?= ($lang == 'en') ? 'Activity' : 'Aktivitas' ?></a>
+    <a href="<?= ($lang == 'en') ? base_url('/en/contact') : base_url('/id/kontak') ?>" class="nav-item"><?= ($lang == 'en') ? 'Contact' : 'Kontak' ?></a>
+</div>
+
+      <img class="logo" src="/upload/logo.png" alt="Logo">
+    </div>
 
     <!-- Gambar Overlay -->
     <div class="overlay">
@@ -898,6 +912,12 @@
 
     <!-- Judul Artikel -->
     <div class="article-title"><?= lang('Blog.aktivitas1'); ?></div>
+      <div class="breadcrumb"><?=lang('Blog.aktivitas');?></div>
+      <div class="article-label"><?=lang('Blog.aktivitaskami');?></div>
+    </div>
+
+    <!-- Judul Artikel -->
+    <div class="article-title"><?=lang('Blog.aktivitas1');?></div>
 
     <div class="main-wrapper">
       <?php
@@ -917,6 +937,9 @@
                   <?= ($lang == 'id') ? $aktivitas->title_aktivitas : $aktivitas->title_aktivitas_en ?>
                 </h3>
                 <p class="custom-color">
+              <h3>
+    <?= ($lang == 'id') ? $aktivitas->title_aktivitas : $aktivitas->title_aktivitas_en ?>
+</h3>                <p class="custom-color">
                   <?php
                   // Cek bahasa yang dipilih
                   if ($lang == 'id') {
@@ -930,6 +953,8 @@
                   <br>
                   <a href="<?= base_url(($lang === 'en' ? 'en/activity' : 'id/aktivitas') . '/' . ($lang === 'en' ? $aktivitas->slug_en : $aktivitas->slug));?>" class="read-more-btn"><?=lang('Blog.bacaselengkapnya');?></a>
                   </div>
+                  <a href="<?= site_url('aktivitas/' . $aktivitas->slug) ?>" class="read-more-btn"><?= lang('Blog.bacaselengkapnya1'); ?></a>
+              </div>
             </div>
 
             <?php
